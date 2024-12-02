@@ -6,6 +6,17 @@ spec:
   assistants:
     - model: meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo
       type: text
+      # Tests for this assistant
+      tests:
+      - name: check usd to gbp rate
+        steps:
+          - prompt: what is the usd to gbp exchange rate?
+            expected_output: the usd to gbp exchange rate. it's ok if it includes additional information such as the rate being based on the latest data.
+      - name: usdgbp
+        steps:
+          - prompt: usdgbp
+            expected_output: the usd to gbp exchange rate only. it should specifically mention both usd and gbp and not other currencies. if it mentions other currencies, FAIL the test
+
       apis:
         - name: Exchange Rates API
           description: Get latest currency exchange rates
