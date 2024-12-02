@@ -15,7 +15,7 @@ spec:
       - name: usdgbp
         steps:
           - prompt: usdgbp
-            expected_output: the usd to gbp exchange rate only. it should specifically mention both usd and gbp and not other currencies. if it mentions other currencies, FAIL the test
+            expected_output: the usd to gbp exchange rate only. it should specifically mention both usd and gbp and not other currencies. if it mentions other currencies, FAIL the test. it's ok if it shows the gbp to usd rate instead.
 
       apis:
         - name: Exchange Rates API
@@ -80,3 +80,96 @@ spec:
                                     type: number
                                     example: 1.34521
           url: https://open.er-api.com/v6
+          request_prep_template: |
+            Your output must be a valid json, without any commentary or additional formatting.
+
+            Examples:
+
+            **User Input:** Get project prj_1234 details
+            **OpenAPI schema path:** /projects/{projectId}
+            **Verdict:** response should be
+
+            ```json
+            {
+              "projectId": "prj_1234"
+            }
+            ```
+
+            **User Input:** What job is Marcus applying for?
+            **OpenAPI schema path:** /jobvacancies/v1/list
+            **OpenAPI schema parameters:** [
+              {
+                "in": "query",
+                "name": "candidate_name",
+                "schema": {
+                  "type": "string"
+                },
+                "required": false,
+                "description": "Filter vacancies by candidate name"
+              }
+            ]
+            **Verdict:** response should be:
+
+            ```json
+            {
+              "candidate_name": "Marcus"
+            }
+            ```
+
+            **User Input:** List all users with status "active"
+            **OpenAPI schema path:** /users/findByStatus
+            **OpenAPI schema parameters:** [
+              {
+                "name": "status",
+                "in": "query",
+                "description": "Status values that need to be considered for filter",
+                "required": true,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["active", "pending", "sold"],
+                  "default": "active"
+                }
+              }
+            ]
+            **Verdict:** response should be:
+
+            ```json
+            {
+              "status": "active"
+            }
+            ```
+
+            **Response Format:** Always respond with JSON without any commentary, wrapped in markdown json tags, for example:
+            ```json
+            {
+              "parameterName": "parameterValue",
+              "parameterName2": "parameterValue2"
+            }
+            ```
+
+            ===END EXAMPLES===
+
+            OpenAPI schema:
+
+            {{.Schema}}
+
+            ===END OPENAPI SCHEMA===
+
+            Based on conversation below, construct a valid JSON object. In cases where user input does not contain information for a query, DO NOT add that specific query parameter to the output. If a user doesn't provide a required parameter, use sensible defaults for required params, and leave optional params out. Do not pass parameters as null, instead just don't include them.
+            ONLY use search parameters from the user messages below - do NOT use search parameters provided in the examples.
+
+            If the user asks for a currency pair like "usdgbp", then split it apart into "usd" and "gbp", and search for the non-USD currency for example {"currency": "gbp"}
+
+          response_success_template: |
+            Present the key information in a concise manner and perform any actions requested by the user.
+            Include relevant details, references, and links if present. Format the summary in Markdown for clarity and readability where appropriate, but don't mention formatting in your response unless it's relevant to the user's query.
+            Make sure to NEVER mention technical terms like "APIs, JSON, Request, etc..." and use first person pronoun (say it as if you performed the action)
+
+            If the user presented a currency pair e.g. usdgbp, and we searched for the non-USD currency, then present ONLY the USD to given currency rate, NOT including any other currencies other than the two in the currency pair the user provided.
+
+
+          response_error_template: |
+            As an AI chat assistant, your job is to help the user understand and resolve API error messages.
+            When offering solutions, You will clarify without going into unnecessary detail. You must respond in less than 100 words.
+            You should commence by saying "An error occurred while trying to process your request ..." also, if you think it's auth error, ask the user to read this doc https://docs.helix.ml/helix/develop/helix-tools/ (format as markdown)
