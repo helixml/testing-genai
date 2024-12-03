@@ -2,9 +2,8 @@
 
 Build and test AI applications with confidence. This repository contains examples and starter code from our workshop on implementing reliable testing practices for generative AI systems.
 
-**Workshop recording that you can follow along yourself: [video](https://www.youtube.com/watch?v=Wz1HXUBSThA)**
-
-**Full workshop documentation: [doc](https://docs.google.com/document/d/1QokK5IHGY2Oz0tI4-Qp6FUcY7hqDWolZCDZUh0IN-aE/edit?tab=t.0)**
+* **Workshop recording that you can follow along yourself: [video](https://www.youtube.com/watch?v=Wz1HXUBSThA)**
+* **Full workshop documentation: [doc](https://docs.google.com/document/d/1QokK5IHGY2Oz0tI4-Qp6FUcY7hqDWolZCDZUh0IN-aE/edit?tab=t.0)**
 
 ## What's Inside
 
