@@ -1,0 +1,21 @@
+apiVersion: app.aispec.org/v1alpha1
+kind: AIApp
+metadata:
+  name: HR docs
+spec:
+  assistants:
+    - model: meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo
+      type: text
+      knowledge:
+        - name: hr-docs
+          rag_settings:
+            threshold: 0
+            results_count: 0
+            chunk_size: 0
+            chunk_overflow: 0
+            disable_chunking: false
+            disable_downloading: false
+          source:
+            filestore:
+              path: hr-docs
+          refresh_enabled: false
