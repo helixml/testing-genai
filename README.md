@@ -37,7 +37,7 @@ The repository includes GitHub Actions and GitLab CI configurations to automatic
 ## Learn More
 
 - Watch the workshop recording: [video](https://www.youtube.com/watch?v=Wz1HXUBSThA)
-- Join our next workshop: https://deploy.helix.ml/
+- Join our next workshop, check the blog: https://blog.helix.ml/
 - Try Helix: https://deploy.helix.ml/
 
 Questions? Join us on [Discord](https://discord.gg/VJftd844GE) or the [MLOps Community Slack](https://gatewaze.mlops.community/) #helix channel.
