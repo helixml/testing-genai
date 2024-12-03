@@ -10,7 +10,7 @@ The code demonstrates three key patterns for testing AI applications:
 
 1. `comedian.yaml` shows how to test for consistent AI personality and behavior. We use a simple comedian bot to demonstrate how automated testing can drive prompt engineering.
 
-2. `hr-docs.yaml` demonstrates testing document Q&A capabilities by connecting to a knowledge base of HR policies and verifying response accuracy.
+2. `hr-docs.yaml` demonstrates testing document Q&A capabilities by connecting to a knowledge base of HR policies and verifying response accuracy. First upload [this file](https://communityfoundations.ca/wp-content/uploads/2021/08/HR-Guide_-Policy-and-Procedure-Template.pdf) to a new 'hr-docs' folder in the ... menu and then Files.
 
 3. `exchange-rates.yaml` showcases API integration testing, ensuring proper handling of user inputs like currency pairs and focused, relevant responses.
 
