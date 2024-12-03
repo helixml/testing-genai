@@ -2,6 +2,8 @@
 
 Build and test AI applications with confidence. This repository contains examples and starter code from our workshop on implementing reliable testing practices for generative AI systems.
 
+Workshop recording, you can follow along yourself: [video](https://www.youtube.com/watch?v=Wz1HXUBSThA)
+
 ## What's Inside
 
 The code demonstrates three key patterns for testing AI applications:
