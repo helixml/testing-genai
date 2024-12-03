@@ -4,6 +4,8 @@ Build and test AI applications with confidence. This repository contains example
 
 **Workshop recording that you can follow along yourself: [video](https://www.youtube.com/watch?v=Wz1HXUBSThA)**
 
+**Full workshop documentation: [doc](https://docs.google.com/document/d/1QokK5IHGY2Oz0tI4-Qp6FUcY7hqDWolZCDZUh0IN-aE/edit?tab=t.0)**
+
 ## What's Inside
 
 The code demonstrates three key patterns for testing AI applications:
