@@ -1,0 +1,29 @@
+apiVersion: app.aispec.org/v1alpha1
+kind: AIApp
+metadata:
+  name: Helix on Kubernetes support bot
+spec:
+  avatar: https://tryhelix.ai/assets/img/CDfWIfha3--900.webp
+  assistants:
+    - model: meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo
+      type: text
+      system_prompt: Help users install Helix on Kubernetes
+      knowledge:
+        - name: https://docs.helix.ml/helix/private-deployment/manual-install/kubernetes/
+          rag_settings:
+            threshold: 0
+            results_count: 0
+            chunk_size: 0
+            chunk_overflow: 0
+            disable_chunking: false
+            disable_downloading: false
+          source:
+            web:
+              urls:
+                - https://docs.helix.ml/helix/private-deployment/manual-install/kubernetes/
+              crawler:
+                enabled: true
+                max_depth: 1
+                max_pages: 1
+                readability: false
+          refresh_enabled: false
