@@ -1,0 +1,12 @@
+apiVersion: app.aispec.org/v1alpha1
+kind: AIApp
+metadata:
+  name: kubectl analyser
+spec:
+  avatar: https://upload.wikimedia.org/wikipedia/commons/3/39/Kubernetes_logo_without_workmark.svg
+  assistants:
+    - model: meta-llama/Llama-3.3-70B-Instruct-Turbo
+      type: text
+      system_prompt: You are an expert at debugging cloud computing and kubernetes
+        environments. Given logs from an outage, help the user debug the
+        problem.
