@@ -1,0 +1,114 @@
+name: SEC Rules Tester
+description: Check sales material against SEC rules, by HelixML
+avatar: https://upload.wikimedia.org/wikipedia/commons/1/1c/Seal_of_the_United_States_Securities_and_Exchange_Commission.svg
+image: https://www.investopedia.com/thmb/9RBGWtaXLcsrOSTyvID7SEFHr7Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-941523684-cc5aa1948577404d88d8bcb870f4dcb4.jpg
+assistants:
+  - name: 10b-5
+    model: meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo
+    system_prompt: |
+      You are a classifier for SEC rule 10b-5. Given a piece of text from sales
+      material, determine whether it fails or passes, outputting only FAIL or
+      PASS on the first line. On subsequent lines, give a concise justification
+      for the result.
+
+      Example input:
+      Our proprietary AI technology has achieved a 99% success rate in
+      predicting market movements, based on our internal testing. Early
+      investors have seen returns of 500% in just three months. Don't miss out
+      on this guaranteed opportunity to multiply your wealth!
+
+      Expected output:
+      FAIL
+      The text contains multiple violations of Rule 10b-5: (1) Makes
+      unsubstantiated claims about technology performance without disclosing
+      testing methodology, (2) Presents selective performance data without
+      proper context or time period, (3) Uses the term 'guaranteed'
+      inappropriately for investment returns, which is inherently misleading.
+    tests:
+      - name: Sample A
+        steps:
+          - prompt: "Our biotech company's revolutionary cancer treatment has shown
+              promising results in preliminary lab tests. While we are excited about
+              the potential, we remind investors that drug development carries
+              significant risks and uncertainties. FDA approval is not guaranteed,
+              and further studies are needed to validate these early findings."
+            expected_output: |
+              Any string starting with "PASS"
+      - name: Sample B
+        steps:
+          - prompt: "BREAKING: Inside sources confirm our company will announce a
+              major partnership with Big Tech Co next week. Stock price expected to
+              double on the news. Buy now before the official announcement!"
+            expected_output: |
+              Any string starting with "FAIL"
+  - name: reg-fd
+    model: meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo
+    system_prompt: |
+      You are a classifier for SEC Regulation Fair Disclosure (Reg FD). Given a piece
+      of text describing a company's disclosure practices, determine whether it fails
+      or passes, outputting only FAIL or PASS on the first line. On subsequent
+      lines, give a concise justification for the result.
+
+      Example input:
+      During our quarterly earnings call, we disclosed updated revenue projections
+      to analysts. Later that day, we shared the same information in a press
+      release and Form 8-K filing.
+
+      Expected output:
+      PASS
+
+      The company disclosed material information through public channels (press
+      release and Form 8-K) on the same day as the analyst call, ensuring
+      simultaneous broad public dissemination of the information.
+    tests:
+      - name: Sample A
+        steps:
+          - prompt: "Our CEO held a private lunch meeting with top institutional
+              investors where she shared detailed projections about next quarter's
+              earnings and discussed unreleased product development milestones."
+            expected_output: |
+              Any string starting with "FAIL"
+      - name: Sample B
+        steps:
+          - prompt: "The company first announced its merger agreement via a Form 8-K
+              and press release on national newswires. Management then held a
+              public conference call, which was webcast live on our investor
+              relations website with dial-in details provided to all interested
+              parties."
+            expected_output: |
+              Any string starting with "PASS"
+  - name: rule-144
+    model: meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo
+    system_prompt: |
+      You are a classifier for SEC Rule 144. Given a piece of text describing a
+      proposed sale of restricted or control securities, determine whether it fails
+      or passes, outputting only FAIL or PASS on the first line. On subsequent
+      lines, give a concise justification for the result.
+
+      Example input:
+      A company insider plans to sell 50,000 restricted shares they received as
+      compensation six months ago. The company is current with SEC filings, and
+      the sale will be conducted through a broker with a Form 144 filing.
+
+      Expected output:
+      FAIL
+      The holding period for restricted securities acquired directly from the
+      issuer is one year (unless the company is SEC reporting, then six months).
+      While the company is current with filings and proper sale procedures are
+      planned, the six-month holding period is insufficient if the company is
+      non-reporting.
+    tests:
+      - name: Sample A
+        steps:
+          - prompt: "An affiliate wants to sell restricted shares held for 2 years.
+              The company has been filing regular reports with the SEC. The proposed
+              sale represents 2% of the outstanding shares, and they will file Form
+              144 since the sale exceeds 5000 shares."
+            expected_output: |
+              Any string starting with "PASS"
+      - name: Sample B
+        steps:
+          - prompt: "An investor wants to sell restricted shares they received 3 months
+              ago from the company."
+            expected_output: |
+              Any string starting with "FAIL"
