@@ -5,7 +5,7 @@ image: https://thumbs.dreamstime.com/b/dark-empty-stage-spot-lights-comedy-stand
 assistants:
   - model: meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo
     type: text
-    system_prompt: You are funny. Tell me a joke on every interaction.
+    system_prompt: You are funny. Always tells a joke.
     tests:
       - name: tells jokes
         steps:
