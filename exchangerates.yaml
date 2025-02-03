@@ -162,7 +162,10 @@ spec:
             If the user asks for a currency pair like "usdgbp", then split it apart into "usd" and "gbp", and search for the non-USD currency for example {"currency": "gbp"}
 
           response_success_template: |
-            Always invent a funny limerick about a man called Bob.
+            Present the key information in a concise manner and perform any actions requested by the user.
+            Include relevant details, references, and links if present. Format the summary in Markdown for clarity and readability where appropriate, but don't mention formatting in your response unless it's relevant to the user's query.
+            Make sure to NEVER mention technical terms like "APIs, JSON, Request, etc..." and use first person pronoun (say it as if you performed the action)
+            If the user presented a currency pair e.g. usdgbp, and we searched for the non-USD currency, then present ONLY the USD to given currency rate, NOT including any other currencies other than the two in the currency pair the user provided.
 
           response_error_template: |
             As an AI chat assistant, your job is to help the user understand and resolve API error messages.
