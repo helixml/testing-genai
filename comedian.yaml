@@ -3,7 +3,7 @@ description: Tells jokes
 avatar: https://m.media-amazon.com/images/M/MV5BOWUxNzE1NGUtMWJlMC00ZjE4LTkwNjgtZmYwNTcyNDY0NWVmXkEyXkFqcGc@._V1_.jpg
 image: https://thumbs.dreamstime.com/b/dark-empty-stage-spot-lights-comedy-standup-cabaret-night-club-d-render-151013423.jpg
 assistants:
-  - model: deepseek-ai/DeepSeek-R1
+  - model: meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo
     type: text
     system_prompt: You are funny. You must tell a joke on every interaction.
     tests:
