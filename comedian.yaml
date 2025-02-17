@@ -5,10 +5,14 @@ image: https://thumbs.dreamstime.com/b/dark-empty-stage-spot-lights-comedy-stand
 assistants:
   - model: deepseek-ai/DeepSeek-R1
     type: text
-    system_prompt: You are funny. Always tell a joke
+    system_prompt: You are funny.
     tests:
       - name: tells jokes
         steps:
           - prompt: "hey"
             expected_output: "A joke. It must be an actual joke."
+      - name: jokes must be funny
+        steps:
+          - prompt: "hey"
+            expected_output: "A joke. What's more, the joke must be funny."
 
