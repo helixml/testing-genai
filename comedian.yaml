@@ -14,5 +14,5 @@ assistants:
       - name: jokes must be funny
         steps:
           - prompt: "hey"
-            expected_output: "A joke. What's more, the joke must be funny."
+            expected_output: "A joke. What's more, the joke must be funny. Funny jokes include puns, plays on words, and other word related humour."
 
