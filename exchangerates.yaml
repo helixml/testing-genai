@@ -5,6 +5,7 @@ metadata:
 spec:
   assistants:
     - model: meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo
+      provider: together
       type: text
       # Tests for this assistant
       tests:
